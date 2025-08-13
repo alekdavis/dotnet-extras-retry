@@ -11,12 +11,20 @@ Use the `DotNetExtras.Retry` library to:
 The nice thing about the `DotNetExtras.Retry` library is that it is extremely easy to integrate with the existing code.
 
 ## Documentation
+
 For complete documentation, usage details, and code samples, see:
 
 - [Documentation](https://alekdavis.github.io/dotnet-extras-retry)
 - [Demo](https://github.com/alekdavis/dotnet-extras-retry/tree/main/RetryDemo)
 
 ## Package
+
 Install the latest version of the `DotNetExtras.Retry` Nuget package from:
 
-- [https://www.nuget.org/packages/DotNetExtras.Mail](https://www.nuget.org/packages/DotNetExtras.Retryl)
+- [https://www.nuget.org/packages/DotNetExtras.Retry](https://www.nuget.org/packages/DotNetExtras.Retry)
+
+## See also
+
+Check out other `DotNetExtras` libraries at:
+
+- [https://github.com/alekdavis/dotnet-extras](https://github.com/alekdavis/dotnet-extras)
