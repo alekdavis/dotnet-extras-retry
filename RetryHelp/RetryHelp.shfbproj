@@ -10,7 +10,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{54155C6C-F6E8-4DAF-8737-0FFF264AB8E3}</ProjectGuid>
+    <ProjectGuid>{13155DEC-96E5-ADAC-7787-0F2A264AB8C6}</ProjectGuid>
     <SHFBSchemaVersion>2017.9.26.0</SHFBSchemaVersion>
     <!-- AssemblyName, Name, and RootNamespace are not used by SHFB but Visual Studio adds them anyway -->
     <AssemblyName>DotNetExtras.Retry</AssemblyName>
