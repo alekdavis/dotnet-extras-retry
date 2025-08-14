@@ -5,12 +5,12 @@ internal partial class Program
 {
     /// <summary>
     /// Illustrates how to call an operation that does not return a value
-    /// and retry it until a timeout is reached.
+    /// and retry it a fixed number of times if the operation fails.
     /// </summary>
-    /// <param name="timeout">
-    /// The timeout after which the retry attempts must stop.
+    /// <param name="maxAttempts">
+    /// The maximum number of attempts to perform the operation.
     /// </param>
-    /// <param name="recoverAfterTimeout">
+    /// <param name="recoverAfterAttempt">
     /// This number is used to simulate a recovered and failed operation on a retry.
     /// </param>
     /// <param name="sleepMilliseconds">
@@ -19,18 +19,17 @@ internal partial class Program
     /// <remarks>
     /// In this example, the retry condition is triggered right by the operation.
     /// </remarks>
-
-    internal static void SimpleRetryBeforeTimeoutDemo
+    internal static void SimpleRetryTimesDemo
     (
-        int timeout, 
-        int recoverAfterTimeout,
+        int maxAttempts, 
+        int recoverAfterAttempt,
         int sleepMilliseconds
     )
     {
         Service service = new()
         {
             // This is just for the simulation purposes.
-            RecoverAfterTimeout = TimeSpan.FromMilliseconds(recoverAfterTimeout),
+            RecoverAfterAttempt = recoverAfterAttempt,
         };
 
         // This try block is to simulate a non-recoverable failure.
@@ -38,15 +37,15 @@ internal partial class Program
         {
             // If the operation throws an InvalidOperationException,
             // keep retrying with a delay between retries
-            // until the specified timeout is reached.
+            // for the total of max number of attempts.
             Execute.WithRetry<InvalidOperationException>
             (
                 // This operation call can be a more complex delegate,
                 // as illustrated in another example.
-                service.DoSomething,
+                service.DoSomething, 
 
-                // Timespan for the timeout.
-                TimeSpan.FromMilliseconds(timeout),
+                // The max number of all attempts.
+                maxAttempts,
 
                 // Delay between retries.
                 TimeSpan.FromMilliseconds(sleepMilliseconds)
@@ -62,12 +61,12 @@ internal partial class Program
 
     /// <summary>
     /// Illustrates how to call an operation that returns a value
-    /// and retry it until a timeout is reached.
+    /// and retry it a fixed number of times if the operation fails.
     /// </summary>
-    /// <param name="timeout">
-    /// The timeout after which the retry attempts must stop.
+    /// <param name="maxAttempts">
+    /// The maximum number of attempts to perform the operation.
     /// </param>
-    /// <param name="recoverAfterTimeout">
+    /// <param name="recoverAfterAttempt">
     /// This number is used to simulate a recovered and failed operation on a retry.
     /// </param>
     /// <param name="sleepMilliseconds">
@@ -76,17 +75,17 @@ internal partial class Program
     /// <remarks>
     /// In this example, the retry condition is determined via the custom logic.
     /// </remarks>
-    internal static void ComplexRetryBeforeTimeoutDemo
+    internal static void ComplexRetryTimesDemo
     (
-        int timeout, 
-        int recoverAfterTimeout,
+        int maxRetries,
+        int recoverAfterAttempt,
         int sleepMilliseconds
     )
     {
         Service service = new()
         {
             // This is just for the simulation purposes.
-            RecoverAfterTimeout = TimeSpan.FromMilliseconds(recoverAfterTimeout),
+            RecoverAfterAttempt = recoverAfterAttempt,
         };
 
         // This try block is to handle a simulation of a non-recoverable failure.
@@ -94,14 +93,13 @@ internal partial class Program
         {
             // If the operation throws a NotSupportedException,
             // keep retrying with a delay between retries
-            // until the specified timeout is reached.
+            // for the total of max number of attempts.
             // The operation is expected to return an int value.
             int result = Execute.WithRetry<NotSupportedException, int>(() => 
             {
                 // BEGINNING OF THE CODE BLOCK THAT WILL BE RETRIED.
                 try
                 {
-                    // Attempt to perform the operation.
                     return service.DoSomethingElse();
                 }
                 // This is not the expected exception for the retry,
@@ -118,7 +116,7 @@ internal partial class Program
                 }
                 // END OF THE CODE BLOCK THAT WILL BE RETRIED.
 
-            }, TimeSpan.FromMilliseconds(timeout), TimeSpan.FromMilliseconds(sleepMilliseconds));
+            }, maxRetries, TimeSpan.FromMilliseconds(sleepMilliseconds));
 
             Console.WriteLine("SUCCESS.");
         }

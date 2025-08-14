@@ -1,11 +1,29 @@
 ﻿namespace RetryDemo;
+/// <summary>
+/// Illustrates the use of the `DotNetExtras.Retry` library for retrying failed operations.
+/// </summary>
 internal partial class Program
 {
+    /// <summary>
+    /// Demonstrates various retry mechanisms and outcomes under different scenarios,
+    /// including recovery after reload, retrying a fixed number of times, 
+    /// and retrying until a timeout is reached.
+    /// The samples cover the cases when the retries solve the problem and when they do not.
+    /// </summary>
     internal static void Main()
     {
         // ---
-        // RETRY AFTER A RELOAD
+        // RELOAD AND RETRY
         // ---
+
+        // The following demos illustrate how to handle a failed operation
+        // after reloading the application configuration and retrying once.
+        // The samples cover a simple scenario when the operation does not return 
+        // a value and the retry condition is triggered right by the operation,
+        // as well as a complex scenario when the operation returns a value
+        // and the retry condition is determined via the custom logic.
+        // For each of the two scenarios, the samples demonstrate both
+        // the successful and unsuccessful retries.
 
         Console.WriteLine("-----------------------------------------");
         Console.WriteLine("SIMPLE RECOVERY AFTER A RELOAD");
@@ -32,8 +50,17 @@ internal partial class Program
         ComplexRetryAfterReloadDemo(0);
 
         // ---
-        // RETRY 3 TIMES
+        // TRY THREE TIMES
         // ---
+
+        // The following demos illustrate how to handle a failed operation
+        // for three attempts.
+        // The samples cover a simple scenario when the operation does not return 
+        // a value and the retry condition is triggered right by the operation,
+        // as well as a complex scenario when the operation returns a value
+        // and the retry condition is determined via the custom logic.
+        // For each of the two scenarios, the samples demonstrate both
+        // the successful and unsuccessful retries.
 
         Console.WriteLine("-----------------------------------------");
         Console.WriteLine("SIMPLE RECOVERY ON THE THIRD ATTEMPT");
@@ -62,6 +89,15 @@ internal partial class Program
         // ---
         // RETRY UNTIL TIMEOUT
         // ---
+
+        // The following demos illustrate how to handle a failed operation
+        // until a timeout is reached.
+        // The samples cover a simple scenario when the operation does not return 
+        // a value and the retry condition is triggered right by the operation,
+        // as well as a complex scenario when the operation returns a value
+        // and the retry condition is determined via the custom logic.
+        // For each of the two scenarios, the samples demonstrate both
+        // the successful and unsuccessful retries.
 
         Console.WriteLine("-----------------------------------------");
         Console.WriteLine("SIMPLE RECOVERY BEFORE THE TIMEOUT");
