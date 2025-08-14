@@ -10,11 +10,134 @@
         The <legacyItalic>DotNetExtras.Retry</legacyItalic> library provides simple methods for recovering from and retrying failed operations. For the detailed description of the library API, code samples, and usage scenarios, see the <legacyItalic>API documentation</legacyItalic> section.
       </para>
     </introduction>
+    
+    <section address="Overview">
+      <title>Overview</title>
+      <content>
+        <para>
+          The <legacyItalic>DotNetExtras.Retry</legacyItalic> library handles three basic cases:
+        </para>
+        <list class="ordered">
+          <listItem>
+            <para>A failed operation can recover after one or more retries until a maximum number of attempts is reached.</para>
+          </listItem>
+          <listItem>
+            <para>A failed operation can recover after one or more retries until a retry timeout is reached.</para>
+          </listItem>
+          <listItem>
+            <para>A failed operation can recover after reloading configuration settings (or doing whatever preparation is required) and a single retry (the number of retry attempts can be based on the maximum number of attempts or timeouts as in two previous cases, but generally, if one retry does not help in this case, then there is little sense in retrying more).</para>
+          </listItem>
+        </list>
+      </content>
+      
+      <sections>
+        
+        <section address="Scenarios">
+          <title>Scenarios</title>
+            <content>
+              <para>
+                The most common real-life scenarios that can be addressed by the <legacyItalic>DotNetExtras.Retry</legacyItalic> library include:
+              </para>
+              <list class="bullet">
+                <listItem>
+                  <para>The code calls an external API with a client secret that expired and needs to be refreshed from the configuration source (secret vaullt, password safe, etc.).</para>
+                </listItem>
+                <listItem>
+                  <para>The code calls an external API that fails because it waits for a background operation to complete. Let's say that the SLA for the background job is two minutes, so the code kan keep retrying an operation for a couple of minutes.</para>
+                </listItem>
+                <listItem>
+                  <para>The code calls an external API that fails occasionally for unclear reasons (could be a timeout or what not), but it normally succeeds on a repeated call.</para>
+                </listItem>
+              </list>
+            </content>
+        </section>
+        
+        <section address="Implementation">
+          <title>Implementation</title>
+            <content>
+              <para>
+                The library implements retries as overloaded static <codeInline>Execute.WithRetry</codeInline> methods that take a delegate (code block) as a parameter. The delegate is executed, and if it fails, the library will keep retrying based on the parameters indicating when the retries should stop (based on the maximum number of attempts or a timeout).
+              </para>
+              <para>
+                To detect a failure that requires a retry, the <codeInline>Execute.WithRetry</codeInline> methods use the type of exception thrown by the delegate (code block).
+              </para>
+              <para>
+                In the scenarios where the operation can recover after reloading configuration settings, the <codeInline>Execute.WithRetry</codeInline> method needs an object that implements the library provides a <codeInline>IReloadable.Reload</codeInline> method (this method must implement the logic to reinitialize settings or whatever else needs to be done to address the error).
+              </para>
+            </content>
+        </section>
+        
+        <section address="Example">
+          <title>Example</title>
+            <content>
+              <para>
+               The following example illustrates how to detect a failure that may be caused by an old configuration setting, reload the settings, and retry the operation.
+              </para>
+              <code language="cs" title="Retry with reload">
+<![CDATA[
+// This class implements the Reload() method of the IReloadable interface,
+// in which it reloads the configuration settings that could have changed.
+ReloadableService service = new();
 
+try
+{
+    // If the operation throws a NotSupportedException,
+    // reload the service object and retry the operation one more time.
+    // The operation is expected to return an int value.
+    int result = Execute.WithRetry<NotSupportedException, int>(() => 
+    {
+        // BEGINNING OF THE CODE BLOCK THAT WILL BE RETRIED.
+        try
+        {
+            // Attempt to perform the operation.
+            return service.DoSomethingElse();
+        }
+        // This is not the expected exception for the retry,
+        // but...
+        catch (InvalidOperationException ex)
+        {
+            // ...we can simulate the expected exception for an appropriate condition.
+            if (ex.Message.StartsWith("Unexpected"))
+            {
+                throw new NotSupportedException("Simulated exception triggering a reload.", ex);
+            }
+
+            // This will handle both the expected exception 
+            // leading to a reload and retry (one retry attempt only),
+            // as well as an unhandled exception that will 
+            // result in error.
+            throw;
+        }
+        // END OF THE CODE BLOCK THAT WILL BE RETRIED.
+
+    }, service);
+    // We are passing the same service object here because it is the one that 
+    // implements the reload method, but it can be a different object.
+    // We use the defaults for the delay (no delay) and the maximum attempts (2).
+
+    Console.WriteLine("SUCCESS.");
+}
+catch
+{
+    Console.WriteLine("ERROR.");
+}
+]]>
+              </code>
+            </content>
+        </section>
+
+        
+      </sections>     
+    </section>
+    
     <relatedTopics>
       <externalLink>
         <linkText>DotNetExtras.Retry Nuget package</linkText>
         <linkUri>https://www.nuget.org/packages/DotNetExtras.Retry</linkUri>
+      </externalLink>
+      <externalLink>
+        <linkText>DotNetExtras.Retry project repository</linkText>
+        <linkUri>https://github.com/alekdavis/dotnet-extras-retry</linkUri>
       </externalLink>
     </relatedTopics>
   </developerConceptualDocument>
