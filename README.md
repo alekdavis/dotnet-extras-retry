@@ -15,52 +15,48 @@ The nice thing about the `DotNetExtras.Retry` library is that it is extremely ea
 The following example illustrates how to detect a failure that may be caused by an old configuration setting, reload the settings, and retry the operation.
 
 ```cs
+using DotNetExtras.Retry;
+...
+
 // This class implements the Reload() method of the IReloadable interface,
 // in which it reloads the configuration settings that could have changed.
 ReloadableService service = new();
 
-try
+// If the operation throws a NotSupportedException,
+// reload the service object and retry the operation one more time.
+// The operation is expected to return an int value.
+int result = Execute.WithRetry<NotSupportedException, int>(() => 
 {
-    // If the operation throws a NotSupportedException,
-    // reload the service object and retry the operation one more time.
-    // The operation is expected to return an int value.
-    int result = Execute.WithRetry<NotSupportedException, int>(() => 
+    // BEGINNING OF THE CODE BLOCK THAT WILL BE RETRIED.
+    try
     {
-        // BEGINNING OF THE CODE BLOCK THAT WILL BE RETRIED.
-        try
+        // Attempt to perform the operation.
+        return service.DoSomething();
+    }
+    // This is not the expected exception for the retry,
+    // but...
+    catch (InvalidOperationException ex)
+    {
+        // ...we can simulate the expected exception for an appropriate condition.
+        if (ex.Message.StartsWith("Unexpected"))
         {
-            // Attempt to perform the operation.
-            return service.DoSomethingElse();
+            throw new NotSupportedException("Simulated exception triggering a reload.", ex);
         }
-        // This is not the expected exception for the retry,
-        // but...
-        catch (InvalidOperationException ex)
-        {
-            // ...we can simulate the expected exception for an appropriate condition.
-            if (ex.Message.StartsWith("Unexpected"))
-            {
-                throw new NotSupportedException("Simulated exception triggering a reload.", ex);
-            }
 
-            // This will handle both the expected exception 
-            // leading to a reload and retry (one retry attempt only),
-            // as well as an unhandled exception that will 
-            // result in error.
-            throw;
-        }
-        // END OF THE CODE BLOCK THAT WILL BE RETRIED.
+        // This will handle both the expected exception 
+        // leading to a reload and retry (one retry attempt only),
+        // as well as an unhandled exception that will 
+        // result in error.
+        throw;
+    }
+    // END OF THE CODE BLOCK THAT WILL BE RETRIED.
 
-    }, service);
-    // We are passing the same service object here because it is the one that 
-    // implements the reload method, but it can be a different object.
-    // We use the defaults for the delay (no delay) and the maximum attempts (2).
+}, service);
+// We are passing the same service object here because it is the one that 
+// implements the reload method, but it can be a different object.
+// We use the defaults for the delay (no delay) and the maximum attempts (2).
 
-    Console.WriteLine("SUCCESS.");
-}
-catch
-{
-    Console.WriteLine("ERROR.");
-}
+Console.WriteLine("SUCCESS.");
 ```
 
 You can find the complete example and other scenarios covered in the [demo application](https://github.com/alekdavis/dotnet-extras-retry/tree/main/RetryDemo).

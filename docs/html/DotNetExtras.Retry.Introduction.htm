@@ -12,52 +12,49 @@
                 In the scenarios where the operation can recover after reloading configuration settings, the <span class="code">Execute.WithRetry</span> method needs an object that implements the library provides a <span class="code">IReloadable.Reload</span> method (this method must implement the logic to reinitialize settings or whatever else needs to be done to address the error).
               </p><h4 id="Example" class="quickLinkHeader">Example</h4><p>
                The following example illustrates how to detect a failure that may be caused by an old configuration setting, reload the settings, and retry the operation.
-              </p><div class="codeSnippet"><div class="codeHeader"><span class="codeHeaderTitle">Retry with reload</span><button class="button is-small is-light copyCode" title="Copy"><span class="icon is-small"><i class="fa fa-copy"></i></span><span>Copy</span></button></div><div class="codePanel hljs"><pre xml:space="preserve"><code class="language-cs">// This class implements the Reload() method of the IReloadable interface,
+              </p><div class="codeSnippet"><div class="codeHeader"><span class="codeHeaderTitle">Retry with reload</span><button class="button is-small is-light copyCode" title="Copy"><span class="icon is-small"><i class="fa fa-copy"></i></span><span>Copy</span></button></div><div class="codePanel hljs"><pre xml:space="preserve"><code class="language-cs">using DotNetExtras.Retry;
+...
+
+// This class implements the Reload() method of the IReloadable interface,
 // in which it reloads the configuration settings that could have changed.
 ReloadableService service = new();
 
-try
+// If the operation throws a NotSupportedException,
+// reload the service object and retry the operation one more time.
+// The operation is expected to return an int value.
+int result = Execute.WithRetry&lt;NotSupportedException, int&gt;(() =&gt; 
 {
-    // If the operation throws a NotSupportedException,
-    // reload the service object and retry the operation one more time.
-    // The operation is expected to return an int value.
-    int result = Execute.WithRetry&lt;NotSupportedException, int&gt;(() =&gt; 
+    // BEGINNING OF THE CODE BLOCK THAT WILL BE RETRIED.
+    try
     {
-        // BEGINNING OF THE CODE BLOCK THAT WILL BE RETRIED.
-        try
+        // Attempt to perform the operation.
+        return service.DoSomething();
+    }
+    // This is not the expected exception for the retry,
+    // but...
+    catch (InvalidOperationException ex)
+    {
+        // ...we can simulate the expected exception for an appropriate condition.
+        if (ex.Message.StartsWith("Unexpected"))
         {
-            // Attempt to perform the operation.
-            return service.DoSomethingElse();
+            throw new NotSupportedException("Simulated exception triggering a reload.", ex);
         }
-        // This is not the expected exception for the retry,
-        // but...
-        catch (InvalidOperationException ex)
-        {
-            // ...we can simulate the expected exception for an appropriate condition.
-            if (ex.Message.StartsWith("Unexpected"))
-            {
-                throw new NotSupportedException("Simulated exception triggering a reload.", ex);
-            }
 
-            // This will handle both the expected exception 
-            // leading to a reload and retry (one retry attempt only),
-            // as well as an unhandled exception that will 
-            // result in error.
-            throw;
-        }
-        // END OF THE CODE BLOCK THAT WILL BE RETRIED.
+        // This will handle both the expected exception 
+        // leading to a reload and retry (one retry attempt only),
+        // as well as an unhandled exception that will 
+        // result in error.
+        throw;
+    }
+    // END OF THE CODE BLOCK THAT WILL BE RETRIED.
 
-    }, service);
-    // We are passing the same service object here because it is the one that 
-    // implements the reload method, but it can be a different object.
-    // We use the defaults for the delay (no delay) and the maximum attempts (2).
-
-    Console.WriteLine("SUCCESS.");
-}
-catch
-{
-    Console.WriteLine("ERROR.");
-}</code></pre></div></div></div><h2 class="quickLinkHeader"><span class="icon toggleSection" tabindex="0"><i class="fa fa-angle-down"></i></span>See Also</h2><div id="seeAlsoSection"><h4>Other Resources</h4><div><a href="https://www.nuget.org/packages/DotNetExtras.Retry" target="_blank" rel="noopener noreferrer">DotNetExtras.Retry Nuget package</a></div><div><a href="https://github.com/alekdavis/dotnet-extras-retry" target="_blank" rel="noopener noreferrer">DotNetExtras.Retry project repository</a></div></div></div><div id="InThisArticleColumn" class="column is-hidden-mobile"><nav class="menu sticky is-hidden"><p class="menu-label"><strong>In This Article</strong></p><ul id="InThisArticleMenu" class="menu-list"><li><a class="quickLink">Overview</a><ul class="menu"><li><a class="quickLink">Scenarios</a></li><li><a class="quickLink">Implementation</a></li><li><a class="quickLink">Example</a></li></ul></li><li><a class="quickLink">See Also</a></li></ul></nav></div></div></div><footer id="PageFooter" class="footer border-top py-3 fixedFooter"><div class="columns"><div id="FooterContent" class="column"><p>Copyright © 2025 Alek Davis</p> 
+}, service);
+// We are passing the same service object here because it is the one that 
+// implements the reload method, but it can be a different object.
+// We use the defaults for the delay (no delay) and the maximum attempts (2).</code></pre></div></div><p>             
+                For the complete example and other samples covering additional scenarios, see the source code of the 
+                <a href="https://github.com/alekdavis/dotnet-extras-retry/tree/main/RetryDemo" target="_blank" rel="noopener noreferrer">demo project</a>.
+              </p></div><h2 class="quickLinkHeader"><span class="icon toggleSection" tabindex="0"><i class="fa fa-angle-down"></i></span>See Also</h2><div id="seeAlsoSection"><h4>Other Resources</h4><div><a href="https://www.nuget.org/packages/DotNetExtras.Retry" target="_blank" rel="noopener noreferrer">DotNetExtras.Retry Nuget package</a></div><div><a href="https://github.com/alekdavis/dotnet-extras-retry" target="_blank" rel="noopener noreferrer">DotNetExtras.Retry project repository</a></div></div></div><div id="InThisArticleColumn" class="column is-hidden-mobile"><nav class="menu sticky is-hidden"><p class="menu-label"><strong>In This Article</strong></p><ul id="InThisArticleMenu" class="menu-list"><li><a class="quickLink">Overview</a><ul class="menu"><li><a class="quickLink">Scenarios</a></li><li><a class="quickLink">Implementation</a></li><li><a class="quickLink">Example</a></li></ul></li><li><a class="quickLink">See Also</a></li></ul></nav></div></div></div><footer id="PageFooter" class="footer border-top py-3 fixedFooter"><div class="columns"><div id="FooterContent" class="column"><p>Copyright © 2025 Alek Davis</p> 
 				</div></div></footer></div><script>$(function(){
 SetDefaultLanguage("cs");
 LoadTocFile(null, null);
