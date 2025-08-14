@@ -1,0 +1,1203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="DotNetExtras.Retry">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Alek Davis</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Debug</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© 2025 Alek Davis</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>A .NET Core library implementing retry operations.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>1.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>1.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>DotNetExtras.Retry</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>DotNetExtras.Retry</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyMetadataAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>RepositoryUrl</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>https://github.com/alekdavis/dotnet-extras-retry</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:DotNetExtras.Retry">
+      <topicdata group="api" />
+      <apidata name="DotNetExtras.Retry" group="namespace" />
+      <elements>
+        <element api="T:DotNetExtras.Retry.Execute" />
+        <element api="T:DotNetExtras.Retry.IReloadable" />
+      </elements>
+      <file name="N_DotNetExtras_Retry" />
+    </api>
+    <api id="T:DotNetExtras.Retry.Execute">
+      <topicdata group="api" />
+      <apidata name="Execute" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <elements>
+        <element api="Overload:DotNetExtras.Retry.Execute.WithRetry">
+          <element api="M:DotNetExtras.Retry.Execute.WithRetry(System.Action,DotNetExtras.Retry.IReloadable,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+          <element api="M:DotNetExtras.Retry.Execute.WithRetry(System.Action,System.Int32,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+          <element api="M:DotNetExtras.Retry.Execute.WithRetry(System.Action,System.TimeSpan,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+          <element api="M:DotNetExtras.Retry.Execute.WithRetry``1(System.Action,DotNetExtras.Retry.IReloadable,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+          <element api="M:DotNetExtras.Retry.Execute.WithRetry``1(System.Action,System.Int32,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+          <element api="M:DotNetExtras.Retry.Execute.WithRetry``1(System.Action,System.TimeSpan,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+          <element api="M:DotNetExtras.Retry.Execute.WithRetry``1(System.Func{``0},System.Int32,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+          <element api="M:DotNetExtras.Retry.Execute.WithRetry``1(System.Func{``0},System.TimeSpan,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+          <element api="M:DotNetExtras.Retry.Execute.WithRetry``2(System.Func{``1},DotNetExtras.Retry.IReloadable,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+          <element api="M:DotNetExtras.Retry.Execute.WithRetry``2(System.Func{``1},System.Int32,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+          <element api="M:DotNetExtras.Retry.Execute.WithRetry``2(System.Func{``1},System.TimeSpan,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+          <element api="M:DotNetExtras.Retry.Execute.WithRetry(System.Action,DotNetExtras.Retry.IReloadable,System.Int32,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+          <element api="M:DotNetExtras.Retry.Execute.WithRetry(System.Action,DotNetExtras.Retry.IReloadable,System.TimeSpan,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+          <element api="M:DotNetExtras.Retry.Execute.WithRetry``1(System.Action,DotNetExtras.Retry.IReloadable,System.Int32,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+          <element api="M:DotNetExtras.Retry.Execute.WithRetry``1(System.Action,DotNetExtras.Retry.IReloadable,System.TimeSpan,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+          <element api="M:DotNetExtras.Retry.Execute.WithRetry``1(System.Func{``0},DotNetExtras.Retry.IReloadable,System.Int32,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+          <element api="M:DotNetExtras.Retry.Execute.WithRetry``1(System.Func{``0},DotNetExtras.Retry.IReloadable,System.TimeSpan,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+          <element api="M:DotNetExtras.Retry.Execute.WithRetry``2(System.Func{``1},DotNetExtras.Retry.IReloadable,System.Int32,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+          <element api="M:DotNetExtras.Retry.Execute.WithRetry``2(System.Func{``1},DotNetExtras.Retry.IReloadable,System.TimeSpan,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="DotNetExtras.Retry" module="DotNetExtras.Retry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0" />
+        </library>
+        <namespace api="N:DotNetExtras.Retry" />
+      </containers>
+      <file name="T_DotNetExtras_Retry_Execute" />
+    </api>
+    <api id="Methods.T:DotNetExtras.Retry.Execute">
+      <topicdata name="Execute" group="list" subgroup="Methods" typeTopicId="T:DotNetExtras.Retry.Execute" />
+      <apidata name="Execute" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:DotNetExtras.Retry.Execute.WithRetry">
+          <element api="M:DotNetExtras.Retry.Execute.WithRetry(System.Action,DotNetExtras.Retry.IReloadable,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+          <element api="M:DotNetExtras.Retry.Execute.WithRetry(System.Action,System.Int32,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+          <element api="M:DotNetExtras.Retry.Execute.WithRetry(System.Action,System.TimeSpan,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+          <element api="M:DotNetExtras.Retry.Execute.WithRetry``1(System.Action,DotNetExtras.Retry.IReloadable,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+          <element api="M:DotNetExtras.Retry.Execute.WithRetry``1(System.Action,System.Int32,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+          <element api="M:DotNetExtras.Retry.Execute.WithRetry``1(System.Action,System.TimeSpan,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+          <element api="M:DotNetExtras.Retry.Execute.WithRetry``1(System.Func{``0},System.Int32,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+          <element api="M:DotNetExtras.Retry.Execute.WithRetry``1(System.Func{``0},System.TimeSpan,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+          <element api="M:DotNetExtras.Retry.Execute.WithRetry``2(System.Func{``1},DotNetExtras.Retry.IReloadable,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+          <element api="M:DotNetExtras.Retry.Execute.WithRetry``2(System.Func{``1},System.Int32,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+          <element api="M:DotNetExtras.Retry.Execute.WithRetry``2(System.Func{``1},System.TimeSpan,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+          <element api="M:DotNetExtras.Retry.Execute.WithRetry(System.Action,DotNetExtras.Retry.IReloadable,System.Int32,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+          <element api="M:DotNetExtras.Retry.Execute.WithRetry(System.Action,DotNetExtras.Retry.IReloadable,System.TimeSpan,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+          <element api="M:DotNetExtras.Retry.Execute.WithRetry``1(System.Action,DotNetExtras.Retry.IReloadable,System.Int32,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+          <element api="M:DotNetExtras.Retry.Execute.WithRetry``1(System.Action,DotNetExtras.Retry.IReloadable,System.TimeSpan,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+          <element api="M:DotNetExtras.Retry.Execute.WithRetry``1(System.Func{``0},DotNetExtras.Retry.IReloadable,System.Int32,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+          <element api="M:DotNetExtras.Retry.Execute.WithRetry``1(System.Func{``0},DotNetExtras.Retry.IReloadable,System.TimeSpan,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+          <element api="M:DotNetExtras.Retry.Execute.WithRetry``2(System.Func{``1},DotNetExtras.Retry.IReloadable,System.Int32,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+          <element api="M:DotNetExtras.Retry.Execute.WithRetry``2(System.Func{``1},DotNetExtras.Retry.IReloadable,System.TimeSpan,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="DotNetExtras.Retry" module="DotNetExtras.Retry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0" />
+        </library>
+        <namespace api="N:DotNetExtras.Retry" />
+        <type api="T:DotNetExtras.Retry.Execute" />
+      </containers>
+      <file name="Methods_T_DotNetExtras_Retry_Execute" />
+    </api>
+    <api id="Overload:DotNetExtras.Retry.Execute.WithRetry">
+      <topicdata name="WithRetry" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" />
+      <apidata name="WithRetry" group="member" subgroup="method" />
+      <elements>
+        <element api="M:DotNetExtras.Retry.Execute.WithRetry(System.Action,DotNetExtras.Retry.IReloadable,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+        <element api="M:DotNetExtras.Retry.Execute.WithRetry(System.Action,System.Int32,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+        <element api="M:DotNetExtras.Retry.Execute.WithRetry(System.Action,System.TimeSpan,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+        <element api="M:DotNetExtras.Retry.Execute.WithRetry``1(System.Action,DotNetExtras.Retry.IReloadable,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+        <element api="M:DotNetExtras.Retry.Execute.WithRetry``1(System.Action,System.Int32,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+        <element api="M:DotNetExtras.Retry.Execute.WithRetry``1(System.Action,System.TimeSpan,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+        <element api="M:DotNetExtras.Retry.Execute.WithRetry``1(System.Func{``0},System.Int32,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+        <element api="M:DotNetExtras.Retry.Execute.WithRetry``1(System.Func{``0},System.TimeSpan,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+        <element api="M:DotNetExtras.Retry.Execute.WithRetry``2(System.Func{``1},DotNetExtras.Retry.IReloadable,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+        <element api="M:DotNetExtras.Retry.Execute.WithRetry``2(System.Func{``1},System.Int32,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+        <element api="M:DotNetExtras.Retry.Execute.WithRetry``2(System.Func{``1},System.TimeSpan,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+        <element api="M:DotNetExtras.Retry.Execute.WithRetry(System.Action,DotNetExtras.Retry.IReloadable,System.Int32,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+        <element api="M:DotNetExtras.Retry.Execute.WithRetry(System.Action,DotNetExtras.Retry.IReloadable,System.TimeSpan,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+        <element api="M:DotNetExtras.Retry.Execute.WithRetry``1(System.Action,DotNetExtras.Retry.IReloadable,System.Int32,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+        <element api="M:DotNetExtras.Retry.Execute.WithRetry``1(System.Action,DotNetExtras.Retry.IReloadable,System.TimeSpan,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+        <element api="M:DotNetExtras.Retry.Execute.WithRetry``1(System.Func{``0},DotNetExtras.Retry.IReloadable,System.Int32,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+        <element api="M:DotNetExtras.Retry.Execute.WithRetry``1(System.Func{``0},DotNetExtras.Retry.IReloadable,System.TimeSpan,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+        <element api="M:DotNetExtras.Retry.Execute.WithRetry``2(System.Func{``1},DotNetExtras.Retry.IReloadable,System.Int32,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+        <element api="M:DotNetExtras.Retry.Execute.WithRetry``2(System.Func{``1},DotNetExtras.Retry.IReloadable,System.TimeSpan,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+      </elements>
+      <containers>
+        <library assembly="DotNetExtras.Retry" module="DotNetExtras.Retry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0" />
+        </library>
+        <namespace api="N:DotNetExtras.Retry" />
+        <type api="T:DotNetExtras.Retry.Execute" ref="true" />
+      </containers>
+      <file name="Overload_DotNetExtras_Retry_Execute_WithRetry" />
+    </api>
+    <api id="M:DotNetExtras.Retry.Execute.WithRetry(System.Action,DotNetExtras.Retry.IReloadable,System.Int32,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)">
+      <topicdata group="api" />
+      <apidata name="WithRetry" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:DotNetExtras.Retry.Execute.WithRetry" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="code">
+          <type api="T:System.Action" ref="true" />
+        </parameter>
+        <parameter name="caller">
+          <type api="T:DotNetExtras.Retry.IReloadable" ref="true" />
+        </parameter>
+        <parameter name="attempts">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="sleep" optional="true">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.TimeSpan" ref="false" />
+            </specialization>
+          </type>
+          <argument>
+            <type api="T:System.Object" ref="true" />
+            <nullValue />
+          </argument>
+        </parameter>
+        <parameter name="logger" optional="true">
+          <type nullable="true" api="T:Microsoft.Extensions.Logging.ILogger" ref="true" />
+          <argument>
+            <type api="T:System.Object" ref="true" />
+            <nullValue />
+          </argument>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="DotNetExtras.Retry" module="DotNetExtras.Retry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:DotNetExtras.Retry" />
+        <type api="T:DotNetExtras.Retry.Execute" ref="true" />
+      </containers>
+      <file name="M_DotNetExtras_Retry_Execute_WithRetry" />
+    </api>
+    <api id="M:DotNetExtras.Retry.Execute.WithRetry``1(System.Action,DotNetExtras.Retry.IReloadable,System.Int32,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)">
+      <topicdata group="api" />
+      <apidata name="WithRetry" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:DotNetExtras.Retry.Execute.WithRetry" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="E">
+          <constrained>
+            <type api="T:System.Exception" ref="true" />
+          </constrained>
+        </template>
+      </templates>
+      <parameters>
+        <parameter name="code">
+          <type api="T:System.Action" ref="true" />
+        </parameter>
+        <parameter name="caller">
+          <type nullable="true" api="T:DotNetExtras.Retry.IReloadable" ref="true" />
+        </parameter>
+        <parameter name="attempts">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="sleep" optional="true">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.TimeSpan" ref="false" />
+            </specialization>
+          </type>
+          <argument>
+            <type api="T:System.Object" ref="true" />
+            <nullValue />
+          </argument>
+        </parameter>
+        <parameter name="logger" optional="true">
+          <type nullable="true" api="T:Microsoft.Extensions.Logging.ILogger" ref="true" />
+          <argument>
+            <type api="T:System.Object" ref="true" />
+            <nullValue />
+          </argument>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="DotNetExtras.Retry" module="DotNetExtras.Retry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:DotNetExtras.Retry" />
+        <type api="T:DotNetExtras.Retry.Execute" ref="true" />
+      </containers>
+      <file name="M_DotNetExtras_Retry_Execute_WithRetry__1" />
+    </api>
+    <api id="M:DotNetExtras.Retry.Execute.WithRetry(System.Action,DotNetExtras.Retry.IReloadable,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)">
+      <topicdata group="api" />
+      <apidata name="WithRetry" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:DotNetExtras.Retry.Execute.WithRetry" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="code">
+          <type api="T:System.Action" ref="true" />
+        </parameter>
+        <parameter name="caller">
+          <type nullable="true" api="T:DotNetExtras.Retry.IReloadable" ref="true" />
+        </parameter>
+        <parameter name="sleep" optional="true">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.TimeSpan" ref="false" />
+            </specialization>
+          </type>
+          <argument>
+            <type api="T:System.Object" ref="true" />
+            <nullValue />
+          </argument>
+        </parameter>
+        <parameter name="logger" optional="true">
+          <type nullable="true" api="T:Microsoft.Extensions.Logging.ILogger" ref="true" />
+          <argument>
+            <type api="T:System.Object" ref="true" />
+            <nullValue />
+          </argument>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="DotNetExtras.Retry" module="DotNetExtras.Retry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:DotNetExtras.Retry" />
+        <type api="T:DotNetExtras.Retry.Execute" ref="true" />
+      </containers>
+      <file name="M_DotNetExtras_Retry_Execute_WithRetry_1" />
+    </api>
+    <api id="M:DotNetExtras.Retry.Execute.WithRetry``1(System.Action,DotNetExtras.Retry.IReloadable,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)">
+      <topicdata group="api" />
+      <apidata name="WithRetry" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:DotNetExtras.Retry.Execute.WithRetry" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="E">
+          <constrained>
+            <type api="T:System.Exception" ref="true" />
+          </constrained>
+        </template>
+      </templates>
+      <parameters>
+        <parameter name="code">
+          <type api="T:System.Action" ref="true" />
+        </parameter>
+        <parameter name="caller">
+          <type nullable="true" api="T:DotNetExtras.Retry.IReloadable" ref="true" />
+        </parameter>
+        <parameter name="sleep" optional="true">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.TimeSpan" ref="false" />
+            </specialization>
+          </type>
+          <argument>
+            <type api="T:System.Object" ref="true" />
+            <nullValue />
+          </argument>
+        </parameter>
+        <parameter name="logger" optional="true">
+          <type nullable="true" api="T:Microsoft.Extensions.Logging.ILogger" ref="true" />
+          <argument>
+            <type api="T:System.Object" ref="true" />
+            <nullValue />
+          </argument>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="DotNetExtras.Retry" module="DotNetExtras.Retry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:DotNetExtras.Retry" />
+        <type api="T:DotNetExtras.Retry.Execute" ref="true" />
+      </containers>
+      <file name="M_DotNetExtras_Retry_Execute_WithRetry__1_1" />
+    </api>
+    <api id="M:DotNetExtras.Retry.Execute.WithRetry(System.Action,DotNetExtras.Retry.IReloadable,System.TimeSpan,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)">
+      <topicdata group="api" />
+      <apidata name="WithRetry" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:DotNetExtras.Retry.Execute.WithRetry" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="code">
+          <type api="T:System.Action" ref="true" />
+        </parameter>
+        <parameter name="caller">
+          <type nullable="true" api="T:DotNetExtras.Retry.IReloadable" ref="true" />
+        </parameter>
+        <parameter name="timeout">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+        <parameter name="sleep" optional="true">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.TimeSpan" ref="false" />
+            </specialization>
+          </type>
+          <argument>
+            <type api="T:System.Object" ref="true" />
+            <nullValue />
+          </argument>
+        </parameter>
+        <parameter name="logger" optional="true">
+          <type nullable="true" api="T:Microsoft.Extensions.Logging.ILogger" ref="true" />
+          <argument>
+            <type api="T:System.Object" ref="true" />
+            <nullValue />
+          </argument>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="DotNetExtras.Retry" module="DotNetExtras.Retry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:DotNetExtras.Retry" />
+        <type api="T:DotNetExtras.Retry.Execute" ref="true" />
+      </containers>
+      <file name="M_DotNetExtras_Retry_Execute_WithRetry_2" />
+    </api>
+    <api id="M:DotNetExtras.Retry.Execute.WithRetry``1(System.Action,DotNetExtras.Retry.IReloadable,System.TimeSpan,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)">
+      <topicdata group="api" />
+      <apidata name="WithRetry" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:DotNetExtras.Retry.Execute.WithRetry" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="E">
+          <constrained>
+            <type api="T:System.Exception" ref="true" />
+          </constrained>
+        </template>
+      </templates>
+      <parameters>
+        <parameter name="code">
+          <type api="T:System.Action" ref="true" />
+        </parameter>
+        <parameter name="caller">
+          <type nullable="true" api="T:DotNetExtras.Retry.IReloadable" ref="true" />
+        </parameter>
+        <parameter name="timeout">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+        <parameter name="sleep" optional="true">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.TimeSpan" ref="false" />
+            </specialization>
+          </type>
+          <argument>
+            <type api="T:System.Object" ref="true" />
+            <nullValue />
+          </argument>
+        </parameter>
+        <parameter name="logger" optional="true">
+          <type nullable="true" api="T:Microsoft.Extensions.Logging.ILogger" ref="true" />
+          <argument>
+            <type api="T:System.Object" ref="true" />
+            <nullValue />
+          </argument>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="DotNetExtras.Retry" module="DotNetExtras.Retry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:DotNetExtras.Retry" />
+        <type api="T:DotNetExtras.Retry.Execute" ref="true" />
+      </containers>
+      <file name="M_DotNetExtras_Retry_Execute_WithRetry__1_2" />
+    </api>
+    <api id="M:DotNetExtras.Retry.Execute.WithRetry(System.Action,System.Int32,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)">
+      <topicdata group="api" />
+      <apidata name="WithRetry" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:DotNetExtras.Retry.Execute.WithRetry" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="code">
+          <type api="T:System.Action" ref="true" />
+        </parameter>
+        <parameter name="attempts">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="sleep" optional="true">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.TimeSpan" ref="false" />
+            </specialization>
+          </type>
+          <argument>
+            <type api="T:System.Object" ref="true" />
+            <nullValue />
+          </argument>
+        </parameter>
+        <parameter name="logger" optional="true">
+          <type nullable="true" api="T:Microsoft.Extensions.Logging.ILogger" ref="true" />
+          <argument>
+            <type api="T:System.Object" ref="true" />
+            <nullValue />
+          </argument>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="DotNetExtras.Retry" module="DotNetExtras.Retry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:DotNetExtras.Retry" />
+        <type api="T:DotNetExtras.Retry.Execute" ref="true" />
+      </containers>
+      <file name="M_DotNetExtras_Retry_Execute_WithRetry_3" />
+    </api>
+    <api id="M:DotNetExtras.Retry.Execute.WithRetry``1(System.Action,System.Int32,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)">
+      <topicdata group="api" />
+      <apidata name="WithRetry" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:DotNetExtras.Retry.Execute.WithRetry" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="E">
+          <constrained>
+            <type api="T:System.Exception" ref="true" />
+          </constrained>
+        </template>
+      </templates>
+      <parameters>
+        <parameter name="code">
+          <type api="T:System.Action" ref="true" />
+        </parameter>
+        <parameter name="attempts">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="sleep" optional="true">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.TimeSpan" ref="false" />
+            </specialization>
+          </type>
+          <argument>
+            <type api="T:System.Object" ref="true" />
+            <nullValue />
+          </argument>
+        </parameter>
+        <parameter name="logger" optional="true">
+          <type nullable="true" api="T:Microsoft.Extensions.Logging.ILogger" ref="true" />
+          <argument>
+            <type api="T:System.Object" ref="true" />
+            <nullValue />
+          </argument>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="DotNetExtras.Retry" module="DotNetExtras.Retry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:DotNetExtras.Retry" />
+        <type api="T:DotNetExtras.Retry.Execute" ref="true" />
+      </containers>
+      <file name="M_DotNetExtras_Retry_Execute_WithRetry__1_3" />
+    </api>
+    <api id="M:DotNetExtras.Retry.Execute.WithRetry(System.Action,System.TimeSpan,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)">
+      <topicdata group="api" />
+      <apidata name="WithRetry" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:DotNetExtras.Retry.Execute.WithRetry" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="code">
+          <type api="T:System.Action" ref="true" />
+        </parameter>
+        <parameter name="timeout">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+        <parameter name="sleep" optional="true">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.TimeSpan" ref="false" />
+            </specialization>
+          </type>
+          <argument>
+            <type api="T:System.Object" ref="true" />
+            <nullValue />
+          </argument>
+        </parameter>
+        <parameter name="logger" optional="true">
+          <type nullable="true" api="T:Microsoft.Extensions.Logging.ILogger" ref="true" />
+          <argument>
+            <type api="T:System.Object" ref="true" />
+            <nullValue />
+          </argument>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="DotNetExtras.Retry" module="DotNetExtras.Retry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:DotNetExtras.Retry" />
+        <type api="T:DotNetExtras.Retry.Execute" ref="true" />
+      </containers>
+      <file name="M_DotNetExtras_Retry_Execute_WithRetry_4" />
+    </api>
+    <api id="M:DotNetExtras.Retry.Execute.WithRetry``1(System.Action,System.TimeSpan,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)">
+      <topicdata group="api" />
+      <apidata name="WithRetry" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:DotNetExtras.Retry.Execute.WithRetry" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="E">
+          <constrained>
+            <type api="T:System.Exception" ref="true" />
+          </constrained>
+        </template>
+      </templates>
+      <parameters>
+        <parameter name="code">
+          <type api="T:System.Action" ref="true" />
+        </parameter>
+        <parameter name="timeout">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+        <parameter name="sleep" optional="true">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.TimeSpan" ref="false" />
+            </specialization>
+          </type>
+          <argument>
+            <type api="T:System.Object" ref="true" />
+            <nullValue />
+          </argument>
+        </parameter>
+        <parameter name="logger" optional="true">
+          <type nullable="true" api="T:Microsoft.Extensions.Logging.ILogger" ref="true" />
+          <argument>
+            <type api="T:System.Object" ref="true" />
+            <nullValue />
+          </argument>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="DotNetExtras.Retry" module="DotNetExtras.Retry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:DotNetExtras.Retry" />
+        <type api="T:DotNetExtras.Retry.Execute" ref="true" />
+      </containers>
+      <file name="M_DotNetExtras_Retry_Execute_WithRetry__1_4" />
+    </api>
+    <api id="M:DotNetExtras.Retry.Execute.WithRetry``1(System.Func{``0},DotNetExtras.Retry.IReloadable,System.Int32,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)">
+      <topicdata group="api" />
+      <apidata name="WithRetry" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:DotNetExtras.Retry.Execute.WithRetry" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="code">
+          <type api="T:System.Func`1" ref="true">
+            <specialization>
+              <template name="T" index="0" api="M:DotNetExtras.Retry.Execute.WithRetry``1(System.Func{``0},DotNetExtras.Retry.IReloadable,System.Int32,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="caller">
+          <type nullable="true" api="T:DotNetExtras.Retry.IReloadable" ref="true" />
+        </parameter>
+        <parameter name="attempts">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="sleep" optional="true">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.TimeSpan" ref="false" />
+            </specialization>
+          </type>
+          <argument>
+            <type api="T:System.Object" ref="true" />
+            <nullValue />
+          </argument>
+        </parameter>
+        <parameter name="logger" optional="true">
+          <type nullable="true" api="T:Microsoft.Extensions.Logging.ILogger" ref="true" />
+          <argument>
+            <type api="T:System.Object" ref="true" />
+            <nullValue />
+          </argument>
+        </parameter>
+      </parameters>
+      <returns>
+        <template name="T" index="0" api="M:DotNetExtras.Retry.Execute.WithRetry``1(System.Func{``0},DotNetExtras.Retry.IReloadable,System.Int32,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+      </returns>
+      <containers>
+        <library assembly="DotNetExtras.Retry" module="DotNetExtras.Retry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:DotNetExtras.Retry" />
+        <type api="T:DotNetExtras.Retry.Execute" ref="true" />
+      </containers>
+      <file name="M_DotNetExtras_Retry_Execute_WithRetry__1_5" />
+    </api>
+    <api id="M:DotNetExtras.Retry.Execute.WithRetry``2(System.Func{``1},DotNetExtras.Retry.IReloadable,System.Int32,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)">
+      <topicdata group="api" />
+      <apidata name="WithRetry" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:DotNetExtras.Retry.Execute.WithRetry" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="E">
+          <constrained>
+            <type api="T:System.Exception" ref="true" />
+          </constrained>
+        </template>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="code">
+          <type api="T:System.Func`1" ref="true">
+            <specialization>
+              <template name="T" index="1" api="M:DotNetExtras.Retry.Execute.WithRetry``2(System.Func{``1},DotNetExtras.Retry.IReloadable,System.Int32,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="caller">
+          <type nullable="true" api="T:DotNetExtras.Retry.IReloadable" ref="true" />
+        </parameter>
+        <parameter name="attempts">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="sleep" optional="true">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.TimeSpan" ref="false" />
+            </specialization>
+          </type>
+          <argument>
+            <type api="T:System.Object" ref="true" />
+            <nullValue />
+          </argument>
+        </parameter>
+        <parameter name="logger" optional="true">
+          <type nullable="true" api="T:Microsoft.Extensions.Logging.ILogger" ref="true" />
+          <argument>
+            <type api="T:System.Object" ref="true" />
+            <nullValue />
+          </argument>
+        </parameter>
+      </parameters>
+      <returns>
+        <template name="T" index="1" api="M:DotNetExtras.Retry.Execute.WithRetry``2(System.Func{``1},DotNetExtras.Retry.IReloadable,System.Int32,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+      </returns>
+      <containers>
+        <library assembly="DotNetExtras.Retry" module="DotNetExtras.Retry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:DotNetExtras.Retry" />
+        <type api="T:DotNetExtras.Retry.Execute" ref="true" />
+      </containers>
+      <file name="M_DotNetExtras_Retry_Execute_WithRetry__2" />
+    </api>
+    <api id="M:DotNetExtras.Retry.Execute.WithRetry``2(System.Func{``1},DotNetExtras.Retry.IReloadable,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)">
+      <topicdata group="api" />
+      <apidata name="WithRetry" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:DotNetExtras.Retry.Execute.WithRetry" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="E">
+          <constrained>
+            <type api="T:System.Exception" ref="true" />
+          </constrained>
+        </template>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="code">
+          <type api="T:System.Func`1" ref="true">
+            <specialization>
+              <template name="T" index="1" api="M:DotNetExtras.Retry.Execute.WithRetry``2(System.Func{``1},DotNetExtras.Retry.IReloadable,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="caller">
+          <type api="T:DotNetExtras.Retry.IReloadable" ref="true" />
+        </parameter>
+        <parameter name="sleep" optional="true">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.TimeSpan" ref="false" />
+            </specialization>
+          </type>
+          <argument>
+            <type api="T:System.Object" ref="true" />
+            <nullValue />
+          </argument>
+        </parameter>
+        <parameter name="logger" optional="true">
+          <type nullable="true" api="T:Microsoft.Extensions.Logging.ILogger" ref="true" />
+          <argument>
+            <type api="T:System.Object" ref="true" />
+            <nullValue />
+          </argument>
+        </parameter>
+      </parameters>
+      <returns>
+        <template name="T" index="1" api="M:DotNetExtras.Retry.Execute.WithRetry``2(System.Func{``1},DotNetExtras.Retry.IReloadable,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+      </returns>
+      <containers>
+        <library assembly="DotNetExtras.Retry" module="DotNetExtras.Retry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:DotNetExtras.Retry" />
+        <type api="T:DotNetExtras.Retry.Execute" ref="true" />
+      </containers>
+      <file name="M_DotNetExtras_Retry_Execute_WithRetry__2_1" />
+    </api>
+    <api id="M:DotNetExtras.Retry.Execute.WithRetry``1(System.Func{``0},DotNetExtras.Retry.IReloadable,System.TimeSpan,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)">
+      <topicdata group="api" />
+      <apidata name="WithRetry" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:DotNetExtras.Retry.Execute.WithRetry" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="code">
+          <type api="T:System.Func`1" ref="true">
+            <specialization>
+              <template name="T" index="0" api="M:DotNetExtras.Retry.Execute.WithRetry``1(System.Func{``0},DotNetExtras.Retry.IReloadable,System.TimeSpan,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="caller">
+          <type nullable="true" api="T:DotNetExtras.Retry.IReloadable" ref="true" />
+        </parameter>
+        <parameter name="timeout">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+        <parameter name="sleep" optional="true">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.TimeSpan" ref="false" />
+            </specialization>
+          </type>
+          <argument>
+            <type api="T:System.Object" ref="true" />
+            <nullValue />
+          </argument>
+        </parameter>
+        <parameter name="logger" optional="true">
+          <type nullable="true" api="T:Microsoft.Extensions.Logging.ILogger" ref="true" />
+          <argument>
+            <type api="T:System.Object" ref="true" />
+            <nullValue />
+          </argument>
+        </parameter>
+      </parameters>
+      <returns>
+        <template name="T" index="0" api="M:DotNetExtras.Retry.Execute.WithRetry``1(System.Func{``0},DotNetExtras.Retry.IReloadable,System.TimeSpan,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+      </returns>
+      <containers>
+        <library assembly="DotNetExtras.Retry" module="DotNetExtras.Retry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:DotNetExtras.Retry" />
+        <type api="T:DotNetExtras.Retry.Execute" ref="true" />
+      </containers>
+      <file name="M_DotNetExtras_Retry_Execute_WithRetry__1_6" />
+    </api>
+    <api id="M:DotNetExtras.Retry.Execute.WithRetry``2(System.Func{``1},DotNetExtras.Retry.IReloadable,System.TimeSpan,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)">
+      <topicdata group="api" />
+      <apidata name="WithRetry" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:DotNetExtras.Retry.Execute.WithRetry" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="E">
+          <constrained>
+            <type api="T:System.Exception" ref="true" />
+          </constrained>
+        </template>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="code">
+          <type api="T:System.Func`1" ref="true">
+            <specialization>
+              <template name="T" index="1" api="M:DotNetExtras.Retry.Execute.WithRetry``2(System.Func{``1},DotNetExtras.Retry.IReloadable,System.TimeSpan,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="caller">
+          <type nullable="true" api="T:DotNetExtras.Retry.IReloadable" ref="true" />
+        </parameter>
+        <parameter name="timeout">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+        <parameter name="sleep" optional="true">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.TimeSpan" ref="false" />
+            </specialization>
+          </type>
+          <argument>
+            <type api="T:System.Object" ref="true" />
+            <nullValue />
+          </argument>
+        </parameter>
+        <parameter name="logger" optional="true">
+          <type nullable="true" api="T:Microsoft.Extensions.Logging.ILogger" ref="true" />
+          <argument>
+            <type api="T:System.Object" ref="true" />
+            <nullValue />
+          </argument>
+        </parameter>
+      </parameters>
+      <returns>
+        <template name="T" index="1" api="M:DotNetExtras.Retry.Execute.WithRetry``2(System.Func{``1},DotNetExtras.Retry.IReloadable,System.TimeSpan,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+      </returns>
+      <containers>
+        <library assembly="DotNetExtras.Retry" module="DotNetExtras.Retry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:DotNetExtras.Retry" />
+        <type api="T:DotNetExtras.Retry.Execute" ref="true" />
+      </containers>
+      <file name="M_DotNetExtras_Retry_Execute_WithRetry__2_2" />
+    </api>
+    <api id="M:DotNetExtras.Retry.Execute.WithRetry``1(System.Func{``0},System.Int32,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)">
+      <topicdata group="api" />
+      <apidata name="WithRetry" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:DotNetExtras.Retry.Execute.WithRetry" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="code">
+          <type api="T:System.Func`1" ref="true">
+            <specialization>
+              <template name="T" index="0" api="M:DotNetExtras.Retry.Execute.WithRetry``1(System.Func{``0},System.Int32,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="attempts">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="sleep" optional="true">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.TimeSpan" ref="false" />
+            </specialization>
+          </type>
+          <argument>
+            <type api="T:System.Object" ref="true" />
+            <nullValue />
+          </argument>
+        </parameter>
+        <parameter name="logger" optional="true">
+          <type nullable="true" api="T:Microsoft.Extensions.Logging.ILogger" ref="true" />
+          <argument>
+            <type api="T:System.Object" ref="true" />
+            <nullValue />
+          </argument>
+        </parameter>
+      </parameters>
+      <returns>
+        <template name="T" index="0" api="M:DotNetExtras.Retry.Execute.WithRetry``1(System.Func{``0},System.Int32,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+      </returns>
+      <containers>
+        <library assembly="DotNetExtras.Retry" module="DotNetExtras.Retry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:DotNetExtras.Retry" />
+        <type api="T:DotNetExtras.Retry.Execute" ref="true" />
+      </containers>
+      <file name="M_DotNetExtras_Retry_Execute_WithRetry__1_7" />
+    </api>
+    <api id="M:DotNetExtras.Retry.Execute.WithRetry``2(System.Func{``1},System.Int32,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)">
+      <topicdata group="api" />
+      <apidata name="WithRetry" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:DotNetExtras.Retry.Execute.WithRetry" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="E">
+          <constrained>
+            <type api="T:System.Exception" ref="true" />
+          </constrained>
+        </template>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="code">
+          <type api="T:System.Func`1" ref="true">
+            <specialization>
+              <template name="T" index="1" api="M:DotNetExtras.Retry.Execute.WithRetry``2(System.Func{``1},System.Int32,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="attempts">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="sleep" optional="true">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.TimeSpan" ref="false" />
+            </specialization>
+          </type>
+          <argument>
+            <type api="T:System.Object" ref="true" />
+            <nullValue />
+          </argument>
+        </parameter>
+        <parameter name="logger" optional="true">
+          <type nullable="true" api="T:Microsoft.Extensions.Logging.ILogger" ref="true" />
+          <argument>
+            <type api="T:System.Object" ref="true" />
+            <nullValue />
+          </argument>
+        </parameter>
+      </parameters>
+      <returns>
+        <template name="T" index="1" api="M:DotNetExtras.Retry.Execute.WithRetry``2(System.Func{``1},System.Int32,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+      </returns>
+      <containers>
+        <library assembly="DotNetExtras.Retry" module="DotNetExtras.Retry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:DotNetExtras.Retry" />
+        <type api="T:DotNetExtras.Retry.Execute" ref="true" />
+      </containers>
+      <file name="M_DotNetExtras_Retry_Execute_WithRetry__2_3" />
+    </api>
+    <api id="M:DotNetExtras.Retry.Execute.WithRetry``1(System.Func{``0},System.TimeSpan,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)">
+      <topicdata group="api" />
+      <apidata name="WithRetry" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:DotNetExtras.Retry.Execute.WithRetry" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="code">
+          <type api="T:System.Func`1" ref="true">
+            <specialization>
+              <template name="T" index="0" api="M:DotNetExtras.Retry.Execute.WithRetry``1(System.Func{``0},System.TimeSpan,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="timeout">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+        <parameter name="sleep" optional="true">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.TimeSpan" ref="false" />
+            </specialization>
+          </type>
+          <argument>
+            <type api="T:System.Object" ref="true" />
+            <nullValue />
+          </argument>
+        </parameter>
+        <parameter name="logger" optional="true">
+          <type nullable="true" api="T:Microsoft.Extensions.Logging.ILogger" ref="true" />
+          <argument>
+            <type api="T:System.Object" ref="true" />
+            <nullValue />
+          </argument>
+        </parameter>
+      </parameters>
+      <returns>
+        <template name="T" index="0" api="M:DotNetExtras.Retry.Execute.WithRetry``1(System.Func{``0},System.TimeSpan,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+      </returns>
+      <containers>
+        <library assembly="DotNetExtras.Retry" module="DotNetExtras.Retry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:DotNetExtras.Retry" />
+        <type api="T:DotNetExtras.Retry.Execute" ref="true" />
+      </containers>
+      <file name="M_DotNetExtras_Retry_Execute_WithRetry__1_8" />
+    </api>
+    <api id="M:DotNetExtras.Retry.Execute.WithRetry``2(System.Func{``1},System.TimeSpan,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)">
+      <topicdata group="api" />
+      <apidata name="WithRetry" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:DotNetExtras.Retry.Execute.WithRetry" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="E">
+          <constrained>
+            <type api="T:System.Exception" ref="true" />
+          </constrained>
+        </template>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="code">
+          <type api="T:System.Func`1" ref="true">
+            <specialization>
+              <template name="T" index="1" api="M:DotNetExtras.Retry.Execute.WithRetry``2(System.Func{``1},System.TimeSpan,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="timeout">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+        <parameter name="sleep" optional="true">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.TimeSpan" ref="false" />
+            </specialization>
+          </type>
+          <argument>
+            <type api="T:System.Object" ref="true" />
+            <nullValue />
+          </argument>
+        </parameter>
+        <parameter name="logger" optional="true">
+          <type nullable="true" api="T:Microsoft.Extensions.Logging.ILogger" ref="true" />
+          <argument>
+            <type api="T:System.Object" ref="true" />
+            <nullValue />
+          </argument>
+        </parameter>
+      </parameters>
+      <returns>
+        <template name="T" index="1" api="M:DotNetExtras.Retry.Execute.WithRetry``2(System.Func{``1},System.TimeSpan,System.Nullable{System.TimeSpan},Microsoft.Extensions.Logging.ILogger)" />
+      </returns>
+      <containers>
+        <library assembly="DotNetExtras.Retry" module="DotNetExtras.Retry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:DotNetExtras.Retry" />
+        <type api="T:DotNetExtras.Retry.Execute" ref="true" />
+      </containers>
+      <file name="M_DotNetExtras_Retry_Execute_WithRetry__2_4" />
+    </api>
+    <api id="T:DotNetExtras.Retry.IReloadable">
+      <topicdata group="api" />
+      <apidata name="IReloadable" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:DotNetExtras.Retry.IReloadable.Reload" />
+      </elements>
+      <containers>
+        <library assembly="DotNetExtras.Retry" module="DotNetExtras.Retry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0" />
+        </library>
+        <namespace api="N:DotNetExtras.Retry" />
+      </containers>
+      <file name="T_DotNetExtras_Retry_IReloadable" />
+    </api>
+    <api id="Methods.T:DotNetExtras.Retry.IReloadable">
+      <topicdata name="IReloadable" group="list" subgroup="Methods" typeTopicId="T:DotNetExtras.Retry.IReloadable" />
+      <apidata name="IReloadable" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:DotNetExtras.Retry.IReloadable.Reload" />
+      </elements>
+      <containers>
+        <library assembly="DotNetExtras.Retry" module="DotNetExtras.Retry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0" />
+        </library>
+        <namespace api="N:DotNetExtras.Retry" />
+        <type api="T:DotNetExtras.Retry.IReloadable" />
+      </containers>
+      <file name="Methods_T_DotNetExtras_Retry_IReloadable" />
+    </api>
+    <api id="M:DotNetExtras.Retry.IReloadable.Reload">
+      <topicdata group="api" />
+      <apidata name="Reload" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="DotNetExtras.Retry" module="DotNetExtras.Retry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:DotNetExtras.Retry" />
+        <type api="T:DotNetExtras.Retry.IReloadable" ref="true" />
+      </containers>
+      <file name="M_DotNetExtras_Retry_IReloadable_Reload" />
+    </api>
+    <api id="R:Project_DotNetExtras.Retry.Help">
+      <topicdata group="root" />
+      <elements>
+        <element api="N:DotNetExtras.Retry" />
+      </elements>
+      <file name="R_Project_DotNetExtras_Retry_Help" />
+    </api>
+  </apis>
+</reflection>
