@@ -55,8 +55,6 @@ int result = Execute.WithRetry<NotSupportedException, int>(() =>
 // We are passing the same service object here because it is the one that 
 // implements the reload method, but it can be a different object.
 // We use the defaults for the delay (no delay) and the maximum attempts (2).
-
-Console.WriteLine("SUCCESS.");
 ```
 
 You can find the complete example and other scenarios covered in the [demo application](https://github.com/alekdavis/dotnet-extras-retry/tree/main/RetryDemo).
