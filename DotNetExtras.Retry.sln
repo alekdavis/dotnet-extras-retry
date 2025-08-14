@@ -20,6 +20,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".GITHUB", ".GITHUB", "{C3AA6B75-8560-4FF7-A6BE-009CE460F2EB}"
 	ProjectSection(SolutionItems) = preProject
 		.github\workflow\ci.yml = .github\workflow\ci.yml
+		.github\workflow\release.yml = .github\workflow\release.yml
 	EndProjectSection
 EndProject
 Global
