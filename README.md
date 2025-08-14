@@ -68,7 +68,7 @@ For complete documentation, usage details, and code samples, see:
 
 ## Package
 
-Install the latest version of the `DotNetExtras.Retry` Nuget package from:
+Install the latest version of the `DotNetExtras.Retry` NuGet package from:
 
 - [https://www.nuget.org/packages/DotNetExtras.Retry](https://www.nuget.org/packages/DotNetExtras.Retry)
 

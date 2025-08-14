@@ -133,7 +133,7 @@ int result = Execute.WithRetry<NotSupportedException, int>(() =>
     
     <relatedTopics>
       <externalLink>
-        <linkText>DotNetExtras.Retry Nuget package</linkText>
+        <linkText>DotNetExtras.Retry NuGet package</linkText>
         <linkUri>https://www.nuget.org/packages/DotNetExtras.Retry</linkUri>
         <linkTarget>_blank</linkTarget>
       </externalLink>

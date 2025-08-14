@@ -24,6 +24,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".GITHUB", ".GITHUB", "{C3AA
 		.github\workflow\release.yml = .github\workflow\release.yml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".NUGET", ".NUGET", "{756B3C43-CC1B-4B4E-BF7E-4856A9CC574E}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\publish.ps1 = .nuget\publish.ps1
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
