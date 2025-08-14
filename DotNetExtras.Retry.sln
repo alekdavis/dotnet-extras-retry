@@ -17,6 +17,11 @@ Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "RetryHelp", "RetryHelp\Retr
 		{DFE763D3-BB2B-705B-477F-0102720BEAB1} = {DFE763D3-BB2B-705B-477F-0102720BEAB1}
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".GITHUB", ".GITHUB", "{C3AA6B75-8560-4FF7-A6BE-009CE460F2EB}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflow\ci.yml = .github\workflow\ci.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,9 +37,7 @@ Global
 		{D1C5928F-3A0E-4534-C5CC-63D72976AC00}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D1C5928F-3A0E-4534-C5CC-63D72976AC00}.Release|Any CPU.Build.0 = Release|Any CPU
 		{13155DEC-96E5-ADAC-7787-0F2A264AB8C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{13155DEC-96E5-ADAC-7787-0F2A264AB8C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13155DEC-96E5-ADAC-7787-0F2A264AB8C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{13155DEC-96E5-ADAC-7787-0F2A264AB8C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
