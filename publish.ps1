@@ -34,11 +34,21 @@ param (
 
 #------------------------------[ CONSTANTS ]-------------------------------
 
+# Unique identifier of this DotNetExtras library.
 $AssemblyId = "Retry"
+
+# The following conditions must be met for this script to work
+# (substitute Xyz with the assembly ID from the $AssemblyId variable above):
+# - This script is in the root of the solution.
+# - The library project is in the XyzLib subfolder under the solution folder.
+# - The library project is named XyzLib.
+# - The library assembly is named DotNetExtras.Xyz.dll.
+# - The library project uses the default directories for the release build.
+# - The library project is built for .NET 8.
 $AssemblyName = "DotNetExtras." + $AssemblyId
-$SourceBaseDir = Split-Path -Path $PSScriptRoot -Parent
-$FolderPath = Join-Path $SourceBaseDir "${AssemblyId}Lib\bin\Release"
-$AssemblyFolderPath = Join-Path $FolderPath "net8.0"
+$SourceBaseDir = $PSScriptRoot
+$ReleaseFolderPath = Join-Path $SourceBaseDir "${AssemblyId}Lib\bin\Release"
+$AssemblyFolderPath = Join-Path $ReleaseFolderPath "net8.0"
 $AssemblyPath  = Join-Path $AssemblyFolderPath "${AssemblyName}.dll"
 $Source = "https://api.nuget.org/v3/index.json"
 
@@ -70,7 +80,7 @@ $Error.Clear()
 # MAIN SCRIPT LOGIC
 $version = GetAssemblyVersion $AssemblyPath
 
-$Nupkg = Join-Path $FolderPath "$AssemblyName.$version.nupkg"
+$Nupkg = Join-Path $ReleaseFolderPath "$AssemblyName.$version.nupkg"
 
 Write-Host "Publishing $Nupkg to NuGet Gallery..."
 nuget push $Nupkg -Source $Source
