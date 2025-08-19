@@ -19,13 +19,13 @@
         </para>
         <list class="ordered">
           <listItem>
-            <para>A failed operation can recover after one or more retries until the maximum number of attempts is reached.</para>
+            <para>A failed operation can recover after reloading configuration settings (or doing whatever preparation is required) and a single retry (the number of retry attempts can be adjusted, but generally, if one retry does not help here, there is little sense in retrying more).</para>
           </listItem>
           <listItem>
             <para>A failed operation can recover after one or more retries until the retry timeout is reached.</para>
           </listItem>
           <listItem>
-            <para>A failed operation can recover after reloading configuration settings (or doing whatever preparation is required) and a single retry (the number of retry attempts can be based on the maximum number of attempts or the specified timeout as in the two previous cases, but generally, if one retry does not help here, there is little sense in retrying more).</para>
+            <para>A failed operation can recover after one or more retries until the maximum number of attempts is reached.</para>
           </listItem>
         </list>
       </content>
@@ -43,7 +43,7 @@
                   <para>The code calls an external API with a client secret that expired and needs to be refreshed from the configuration source (secret vault, password safe, etc.).</para>
                 </listItem>
                 <listItem>
-                  <para>The code calls an external API that fails because it waits for a background operation to complete. Let's say that the SLA for the background job is two minutes, so the code can keep retrying an operation for a couple of minutes.</para>
+                  <para>The code calls an external API that fails because it waits for a background operation to complete, and the SLA for the background job is two minutes, so the code will keep retrying the operation for a couple of minutes.</para>
                 </listItem>
                 <listItem>
                   <para>The code calls an external API that fails occasionally for unclear reasons (could be a timeout or what not), but it normally succeeds on a repeated call.</para>
@@ -56,13 +56,13 @@
           <title>Implementation</title>
             <content>
               <para>
-                The library implements retries as overloaded static <codeInline>Execute.WithRetry</codeInline> methods that take a delegate (code block) as a parameter. The delegate is executed, and if it fails, the library will keep retrying and either succeed or stop once the stop condition is reached. The stop condition can be based on the maximum number of attempts or a timeout. The caller may specify a delay between the retry attempts.
+                The library implements retries as static <codeInline>Execute.WithRetry</codeInline> methods that take a delegate (code block) as a parameter. The delegate is executed, and if it fails, the library will retry the failed code block until the operation succeeds or it reaches the stop condition. The stop condition can be based on the maximum number of attempts or a timeout. The caller may specify a delay between the retry attempts.
               </para>
               <para>
                 To detect a failure that requires a retry, the <codeInline>Execute.WithRetry</codeInline> methods use the type of exception thrown by the delegate (code block).
               </para>
               <para>
-                In the scenarios where the operation can recover after reloading configuration settings, the <codeInline>Execute.WithRetry</codeInline> method needs an object that implements  the single <codeInline>Reload</codeInline> method of the <codeInline>IReloadable</codeInline> interface (this method reinitializes settings or does whatever else needs to be done to address the error).
+                In the scenarios where the operation can recover after reloading configuration settings, an  <codeInline>Execute.WithRetry</codeInline> method needs an object that implements  the single <codeInline>Reload</codeInline> method of the <codeInline>IReloadable</codeInline> interface (this method reinitializes settings or does whatever else needs to be done to address the error).
               </para>
             </content>
         </section>
