@@ -1,6 +1,6 @@
 # DotNetExtras.Retry
 
-`DotNetExtras.Retry` is a .NET Core library that allows applications to recover from and retry failed operations. This library is similar to [Polly](https://github.com/App-vNext/Polly), but it is much simpler because it only focuses only on three most common scenarios.
+`DotNetExtras.Retry` is a .NET Core library that allows applications to recover from and retry failed operations. This library is similar to [Polly](https://github.com/App-vNext/Polly), but it is much simpler because it only focuses on three most common scenarios.
 
 Use the `DotNetExtras.Retry` library to:
 
