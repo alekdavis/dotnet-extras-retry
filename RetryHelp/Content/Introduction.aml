@@ -120,10 +120,17 @@ int result = Execute.WithRetry<NotSupportedException, int>(() =>
               <para>             
                 For the complete example and other samples covering additional scenarios, see the source code (and read the comments) of the 
                 <externalLink>
-                  <linkText>demo project</linkText>
+                  <linkText>unit test</linkText>
+                  <linkUri>https://github.com/alekdavis/dotnet-extras-retry/tree/main/RetryTests</linkUri>
+                  <linkTarget>_blank</linkTarget>
+                </externalLink>
+                and
+                <externalLink>
+                  <linkText>demo</linkText>
                   <linkUri>https://github.com/alekdavis/dotnet-extras-retry/tree/main/RetryDemo</linkUri>
                   <linkTarget>_blank</linkTarget>
-                </externalLink>.
+                </externalLink> 
+                projects.
               </para>
             </content>
         </section>

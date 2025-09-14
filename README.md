@@ -64,6 +64,7 @@ You can find the complete example and other scenarios covered in the [demo appli
 For complete documentation, usage details, and code samples, see:
 
 - [Documentation](https://alekdavis.github.io/dotnet-extras-retry)
+- [Unit tests](https://github.com/alekdavis/dotnet-extras-retry/tree/main/RetryTests)
 - [Demo](https://github.com/alekdavis/dotnet-extras-retry/tree/main/RetryDemo)
 
 ## Package
