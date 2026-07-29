@@ -43,14 +43,14 @@
     <BuildAssemblerVerbosity>OnlyWarningsAndErrors</BuildAssemblerVerbosity>
     <SaveComponentCacheCapacity>100</SaveComponentCacheCapacity>
     <HelpTitle>DotNetExtras.Retry Library Documentation</HelpTitle>
-    <HelpFileVersion>1.0.6</HelpFileVersion>
+    <HelpFileVersion>1.0.7</HelpFileVersion>
     <NamingMethod>MemberName</NamingMethod>
     <ContentPlacement>AboveNamespaces</ContentPlacement>
     <RootNamespaceContainer>True</RootNamespaceContainer>
     <RootNamespaceTitle>API documentation</RootNamespaceTitle>
     <NamespaceGrouping>True</NamespaceGrouping>
     <MaximumGroupParts>3</MaximumGroupParts>
-    <Preliminary>True</Preliminary>
+    <Preliminary>False</Preliminary>
     <SdkLinkTarget>Blank</SdkLinkTarget>
     <NamespaceSummaries>
       <NamespaceSummaryItem name="DotNetExtras.Retry" isDocumented="True">Provides simple methods allowing applications to retry failed operations.</NamespaceSummaryItem>
