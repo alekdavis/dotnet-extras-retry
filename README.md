@@ -135,6 +135,29 @@ Response response = Execute.WithRetry<HttpRequestException, Response>(() =>
 
 You can find the complete example and other scenarios covered in the [demo application](https://github.com/alekdavis/dotnet-extras-retry/tree/main/RetryDemo).
 
+## When to use this library
+
+`DotNetExtras.Retry` is intentionally small. It does one thing — retry a block of code — and it does it with the least possible ceremony. If you need a full resilience toolbox (circuit breakers, bulkhead isolation, hedging, rate limiting, telemetry, and so on), reach for [Polly](https://github.com/App-vNext/Polly) instead. If all you need is to wrap an operation in a retry (optionally reloading some state first), this library keeps the code and setup to a minimum.
+
+### Why not use Polly?
+
+You absolutely can, and for complex resilience requirements you probably should. Polly is powerful and battle-tested, and it can do everything this library does and much more (including result-based retries).
+
+The reason `DotNetExtras.Retry` exists is **simplicity**:
+
+- **Minimal setup.** There is no pipeline, strategy, or policy to configure and no dependency injection to wire up. You call a static `Execute.WithRetry(...)` method and pass your code block.
+- **Minimal code changes.** Wrapping existing code in a retry is usually a one-line change, which makes it easy to add (or remove) retry behavior without restructuring your code.
+- **A tiny footprint.** The only dependency is `Microsoft.Extensions.Logging.Abstractions` (for optional logging), so there is very little to learn and almost nothing to bring into your project.
+- **A built-in reload-and-retry hook.** Via the `IReloadable` interface, you can reload configuration or refresh state (for example, a rotated client secret) *before* each retry — a common real-world need that would otherwise require custom plumbing.
+
+In short: use Polly when you need a resilience framework; use `DotNetExtras.Retry` when you just need a simple retry with minimal fuss.
+
+### Why not use Microsoft.Extensions.Http.Resilience?
+
+[`Microsoft.Extensions.Http.Resilience`](https://learn.microsoft.com/dotnet/core/resilience/http-resilience) (built on top of Polly) is an excellent choice — but it solves a **different problem**. It adds resilience to outgoing HTTP calls made through `HttpClient`/`IHttpClientFactory` and is configured as part of an HTTP request pipeline.
+
+`DotNetExtras.Retry` is not HTTP-specific: it retries **any** code block — a database call, a file operation, an SDK method, a computation, or an HTTP request — without requiring `HttpClient`, dependency injection, or a request pipeline. If your retries are exclusively around `HttpClient` calls in a DI-based application, `Microsoft.Extensions.Http.Resilience` is likely the better fit. For everything else (or when you want the reload-and-retry hook), this library applies.
+
 ## Documentation
 
 For complete documentation, usage details, and code samples, see:
