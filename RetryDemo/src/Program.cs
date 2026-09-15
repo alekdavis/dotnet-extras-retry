@@ -7,7 +7,9 @@ internal partial class Program
     /// <summary>
     /// Demonstrates various retry mechanisms and outcomes under different scenarios,
     /// including recovery after reload, retrying a fixed number of times, 
-    /// and retrying until a timeout is reached.
+    /// retrying until a timeout is reached, retrying based on a custom condition
+    /// (predicate), and retrying on either an exception or a custom condition
+    /// (combined mode).
     /// The samples cover the cases when the retries solve the problem and when they do not.
     /// </summary>
     internal static void Main()
@@ -122,5 +124,56 @@ internal partial class Program
         Console.WriteLine("(retry fails after a timeout)");
         Console.WriteLine("-----------------------------------------");
         ComplexRetryBeforeTimeoutDemo(700, 900, 50);
+
+        // ---
+        // RETRY BASED ON A CUSTOM CONDITION (PREDICATE)
+        // ---
+
+        // The following demos illustrate how to retry an operation that does not
+        // throw an exception, but instead returns a result indicating whether
+        // the operation has succeeded. The retry is triggered by a predicate that
+        // inspects the returned value. The samples demonstrate both the successful
+        // and unsuccessful retries.
+
+        Console.WriteLine("-----------------------------------------");
+        Console.WriteLine("PREDICATE RECOVERY ON THE THIRD ATTEMPT");
+        Console.WriteLine("(result becomes ready on the third attempt)");
+        Console.WriteLine("-----------------------------------------");
+        PredicateRetryDemo(4, 3, 100);
+
+        Console.WriteLine("-----------------------------------------");
+        Console.WriteLine("PREDICATE FAILURE AFTER TWO ATTEMPTS");
+        Console.WriteLine("(result never becomes ready in time)");
+        Console.WriteLine("-----------------------------------------");
+        PredicateRetryDemo(2, 4, 100);
+
+        // ---
+        // RETRY ON AN EXCEPTION OR A CUSTOM CONDITION (COMBINED MODE)
+        // ---
+
+        // The following demos illustrate how to retry an operation that can fail
+        // in two different ways: by throwing an exception (hard failure) or by
+        // returning an unacceptable result (soft failure). The retry is triggered
+        // by either signal. The samples demonstrate a successful retry, a failure
+        // where the last attempt returns an unacceptable result, and a failure
+        // where the last attempt throws an exception (which is rethrown).
+
+        Console.WriteLine("-----------------------------------------");
+        Console.WriteLine("COMBINED RECOVERY ON THE THIRD ATTEMPT");
+        Console.WriteLine("(retry succeeds after both failure types)");
+        Console.WriteLine("-----------------------------------------");
+        CombinedRetryDemo(4, 3, 100);
+
+        Console.WriteLine("-----------------------------------------");
+        Console.WriteLine("COMBINED FAILURE (LAST RESULT UNACCEPTABLE)");
+        Console.WriteLine("(the last attempt returns a throttled result)");
+        Console.WriteLine("-----------------------------------------");
+        CombinedRetryDemo(2, 5, 100);
+
+        Console.WriteLine("-----------------------------------------");
+        Console.WriteLine("COMBINED FAILURE (LAST ATTEMPT THROWS)");
+        Console.WriteLine("(the last attempt throws the expected exception)");
+        Console.WriteLine("-----------------------------------------");
+        CombinedRetryDemo(3, 5, 100);
     }
 }

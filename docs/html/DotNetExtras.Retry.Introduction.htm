@@ -9,6 +9,8 @@
               </p><p>
                 To detect a failure that requires a retry, the <span class="code">Execute.WithRetry</span> methods use the type of exception thrown by the delegate (code block).
               </p><p>
+                Some operations do not fail by throwing an exception; instead, they return a result that indicates that the operation has not succeeded yet (such as an HTTP response with a <em>Pending</em> status or an empty result set). For these cases, the <span class="code">Execute.WithRetry</span> methods provide overloads that accept a predicate (a <span class="code">Func&lt;T, bool&gt;</span> delegate) that inspects the returned value and decides whether a retry is needed. There are also combined overloads that trigger a retry when the delegate either throws the expected exception or returns a value that satisfies the predicate. In the combined case, when the stop condition is reached, the last failure determines the outcome: if the final attempt threw the expected exception, it is rethrown; otherwise, the last returned value is returned.
+              </p><p>
                 In the scenarios where the operation can recover after reloading configuration settings, an  <span class="code">Execute.WithRetry</span> method needs an object that implements  the single <span class="code">Reload</span> method of the <span class="code">IReloadable</span> interface (this method reinitializes settings or does whatever else needs to be done to address the error).
               </p><h4 id="Example" class="quickLinkHeader">Example</h4><p>
                The following example illustrates how to detect a failure that may be caused by an old configuration setting, reload the settings, and retry the operation.
@@ -51,7 +53,58 @@ int result = Execute.WithRetry&lt;NotSupportedException, int&gt;(() =&gt;
 }, service);
 // We are passing the same service object here because it is the one that 
 // implements the reload method, but it can be a different object.
-// We use the defaults for the delay (no delay) and the maximum attempts (2).</code></pre></div></div><p>             
+// We use the defaults for the delay (no delay) and the maximum attempts (2).</code></pre></div></div><p>
+                The next example retries a flaky operation a fixed number of times, pausing between attempts. If every attempt fails, the last exception is rethrown.
+              </p><div class="codeSnippet"><div class="codeHeader"><span class="codeHeaderTitle">Retry a fixed number of times</span><button class="button is-small is-light copyCode" title="Copy"><span class="icon is-small"><i class="fa fa-copy"></i></span><span>Copy</span></button></div><div class="codePanel hljs"><pre xml:space="preserve"><code class="language-cs">using DotNetExtras.Retry;
+...
+
+// Retry up to 3 times, waiting 500 milliseconds between attempts.
+// Any exception triggers a retry (use the generic overload to narrow it down).
+int value = Execute.WithRetry&lt;int&gt;(() =&gt;
+{
+    return externalApi.GetValue();
+
+}, attempts: 3, sleep: TimeSpan.FromMilliseconds(500));</code></pre></div></div><p>
+                The following example keeps retrying an operation until it succeeds or the timeout elapses. This is handy when waiting for an eventually consistent backend (for example, a record that is still being replicated).
+              </p><div class="codeSnippet"><div class="codeHeader"><span class="codeHeaderTitle">Retry for a period of time</span><button class="button is-small is-light copyCode" title="Copy"><span class="icon is-small"><i class="fa fa-copy"></i></span><span>Copy</span></button></div><div class="codePanel hljs"><pre xml:space="preserve"><code class="language-cs">using DotNetExtras.Retry;
+...
+
+// Retry only on the TimeoutException for up to 2 minutes,
+// pausing 5 seconds between attempts.
+User user = Execute.WithRetry&lt;TimeoutException, User&gt;(() =&gt;
+{
+    return directory.GetUser(userId);
+
+}, timeout: TimeSpan.FromMinutes(2), sleep: TimeSpan.FromSeconds(5));</code></pre></div></div><p>
+                Sometimes a failed call does not throw; it returns a result that signals "not ready yet" (an HTTP <em>200</em> with a <em>Pending</em> status, an empty collection, and so on). Instead of faking an exception, pass a predicate that inspects the result and returns <span class="code">true</span> to trigger a retry.
+              </p><div class="codeSnippet"><div class="codeHeader"><span class="codeHeaderTitle">Retry based on a custom condition (predicate)</span><button class="button is-small is-light copyCode" title="Copy"><span class="icon is-small"><i class="fa fa-copy"></i></span><span>Copy</span></button></div><div class="codePanel hljs"><pre xml:space="preserve"><code class="language-cs">using DotNetExtras.Retry;
+...
+
+// Poll a long-running job until it is no longer "Running",
+// retrying up to 10 times with a 1-second delay.
+JobStatus status = Execute.WithRetry&lt;JobStatus&gt;(() =&gt;
+{
+    return jobs.GetStatus(jobId);
+
+}, retryCondition: result =&gt; result.State == "Running", attempts: 10, sleep: TimeSpan.FromSeconds(1));
+
+// When the attempts are exhausted, the last result is returned
+// (it may still satisfy the retry condition), so inspect it before using it.</code></pre></div></div><p>
+                Many real-world APIs signal transient trouble in two different ways at once: a hard failure surfaces as an exception, while a soft failure comes back as an unacceptable result. The combined overloads retry on either signal.
+              </p><div class="codeSnippet"><div class="codeHeader"><span class="codeHeaderTitle">Retry on an exception OR a custom condition (combined mode)</span><button class="button is-small is-light copyCode" title="Copy"><span class="icon is-small"><i class="fa fa-copy"></i></span><span>Copy</span></button></div><div class="codePanel hljs"><pre xml:space="preserve"><code class="language-cs">using DotNetExtras.Retry;
+...
+
+// Retry when the call throws a transient HttpRequestException OR
+// when it returns a response that is still marked as throttled.
+// Retry up to 5 times, reloading the service and pausing 2 seconds between attempts.
+Response response = Execute.WithRetry&lt;HttpRequestException, Response&gt;(() =&gt;
+{
+    return service.Send(request);
+
+}, retryCondition: result =&gt; result.IsThrottled, service, attempts: 5, sleep: TimeSpan.FromSeconds(2));
+
+// "Last failure wins" on exhaustion: if the final attempt threw the expected
+// exception, it is rethrown; otherwise, the last returned value is returned.</code></pre></div></div><p>             
                 For the complete example and other samples covering additional scenarios, see the source code (and read the comments) of the 
                 <a href="https://github.com/alekdavis/dotnet-extras-retry/tree/main/RetryTests" target="_blank" rel="noopener noreferrer">unit test</a>
                 and

@@ -219,6 +219,53 @@ public static partial class Execute
         logger?.LogInformation("Preparing to retry the operation after '{exception:l}' was caught.", 
             exceptionType.Name);
 
+        Reload(sleep, caller, logger);
+    }
+
+    /// <summary>
+    /// Implements common logic for the retry methods that are triggered
+    /// by a caller-supplied predicate instead of an exception.
+    /// </summary>
+    /// <param name="sleep">
+    /// Wait time before a retry.
+    /// </param>
+    /// <param name="caller">
+    /// Service that must be reloaded before a retry.
+    /// </param>
+    /// <param name="logger">
+    /// Logs retry event information.
+    /// </param>
+    private static void Prepare
+    (
+        TimeSpan? sleep = null,
+        IReloadable? caller = null,
+        ILogger? logger = null
+    )
+    {
+        logger?.LogInformation("Preparing to retry the operation because the retry condition was met.");
+
+        Reload(sleep, caller, logger);
+    }
+
+    /// <summary>
+    /// Reloads the caller (if specified) and waits before the next retry.
+    /// </summary>
+    /// <param name="sleep">
+    /// Wait time before a retry.
+    /// </param>
+    /// <param name="caller">
+    /// Service that must be reloaded before a retry.
+    /// </param>
+    /// <param name="logger">
+    /// Logs retry event information.
+    /// </param>
+    private static void Reload
+    (
+        TimeSpan? sleep,
+        IReloadable? caller,
+        ILogger? logger
+    )
+    {
         if (caller != null)
         {
             logger?.LogInformation("Reloading '{caller:l}' instance.", caller.GetType().Name);
