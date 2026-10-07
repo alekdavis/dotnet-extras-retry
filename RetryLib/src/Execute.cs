@@ -273,14 +273,85 @@ public static partial class Execute
             caller.Reload();
         }
 
-        int waitMilliseconds =  sleep?.Milliseconds ?? 0;
+        TimeSpan wait = sleep ?? TimeSpan.Zero;
 
-        if (waitMilliseconds > 0)
+        if (wait > TimeSpan.Zero)
         {
             logger?.LogInformation("Waiting {waitMilliseconds} milliseconds before retrying.", 
-                waitMilliseconds);
+                (long)wait.TotalMilliseconds);
 
-            Thread.Sleep(waitMilliseconds);
+            Thread.Sleep(wait);
+        }
+
+        logger?.LogInformation("Retrying the operation.");
+    }
+
+    /// <summary>
+    /// Asynchronous version of the retry preparation logic: logs the reason,
+    /// reloads the caller (if specified), and waits before the next retry.
+    /// </summary>
+    /// <param name="exceptionType">
+    /// Type of exception triggering a retry, or <see langword="null"/>
+    /// if the retry was triggered by a predicate.
+    /// </param>
+    /// <param name="sleep">
+    /// Wait time before a retry.
+    /// </param>
+    /// <param name="caller">
+    /// Service that must be reloaded before a retry.
+    /// </param>
+    /// <param name="logger">
+    /// Logs retry event information.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// Token that cancels the wait.
+    /// </param>
+    /// <param name="asyncCaller">
+    /// An optional asynchronous version of the caller that implements <see cref="IReloadableAsync"/>.
+    /// </param>
+    private static async Task PrepareAsync
+    (
+        Type? exceptionType,
+        TimeSpan? sleep,
+        IReloadable? caller,
+        ILogger? logger,
+        CancellationToken cancellationToken,
+        IReloadableAsync? asyncCaller = null
+    )
+    {
+        if (exceptionType != null)
+        {
+            logger?.LogInformation("Preparing to retry the operation after '{exception:l}' was caught.", 
+                exceptionType.Name);
+        }
+        else
+        {
+            logger?.LogInformation("Preparing to retry the operation because the retry condition was met.");
+        }
+
+        asyncCaller ??= caller as IReloadableAsync;
+
+        if (asyncCaller != null)
+        {
+            logger?.LogInformation("Reloading '{caller:l}' instance.", asyncCaller.GetType().Name);
+
+            await asyncCaller.ReloadAsync(cancellationToken).ConfigureAwait(false);
+        }
+        else if (caller != null)
+        {
+            logger?.LogInformation("Reloading '{caller:l}' instance.", caller.GetType().Name);
+
+            caller.Reload();
+        }
+
+        TimeSpan wait = sleep ?? TimeSpan.Zero;
+
+        if (wait > TimeSpan.Zero)
+        {
+            logger?.LogInformation("Waiting {waitMilliseconds} milliseconds before retrying.", 
+                (long)wait.TotalMilliseconds);
+
+            await Task.Delay(wait, cancellationToken).ConfigureAwait(false);
         }
 
         logger?.LogInformation("Retrying the operation.");

@@ -1,6 +1,6 @@
 # DotNetExtras.Retry
 
-`DotNetExtras.Retry` is a .NET Core library that allows applications to recover from and retry failed operations. This library is similar to [Polly](https://github.com/App-vNext/Polly), but it is much simpler because it only focuses on three most common scenarios.
+`DotNetExtras.Retry` is a .NET Core library that allows applications to recover from and retry failed operations. This library is similar to [Polly](https://github.com/App-vNext/Polly), but it is much simpler because it only focuses on four most common scenarios.
 
 Use the `DotNetExtras.Retry` library to:
 
@@ -131,6 +131,51 @@ Response response = Execute.WithRetry<HttpRequestException, Response>(() =>
 
 // "Last failure wins" on exhaustion: if the final attempt threw the expected
 // exception, it is rethrown; otherwise, the last returned value is returned.
+```
+
+### Retry on multiple conditions (nested retries vs. rules)
+
+When different failures need different handling (e.g. reload an expired client secret once, but back off and retry several times on HTTP 429), you have two options.
+
+**Nesting** works with no extra API, and is fine for simple cases, but budgets multiply (outer attempts × inner attempts) and the inner counter restarts on every outer retry:
+
+```cs
+Response response = Execute.WithRetry<SecretExpiredException, Response>(() =>
+    Execute.WithRetry(() => client.Send(request),
+        r => r.StatusCode == HttpStatusCode.TooManyRequests, null, attempts: 5, sleep: TimeSpan.FromSeconds(2)),
+    secrets, attempts: 2);
+```
+
+**Rules** keep the code flat. Each `RetryRule<T>` has its own condition, reload action, budget (`Attempts` and/or `Timeout`), and delay. Rules are evaluated in order; the first matching rule handles the failure, and its counter is independent of the other rules. `GetSleep` can compute the delay from the result or exception (e.g. the `Retry-After` header):
+
+```cs
+Response response = Execute.WithRetry(() => client.Send(request),
+    new RetryRule<Response>
+    {
+        OnException = ex => ex is SecretExpiredException,
+        Reload      = secrets,
+        Attempts    = 2
+    },
+    new RetryRule<Response>
+    {
+        OnResult = r => r.StatusCode == HttpStatusCode.TooManyRequests,
+        Attempts = 5,
+        GetSleep = (r, ex) => r?.Headers.RetryAfter?.Delta ?? TimeSpan.FromSeconds(2)
+    });
+```
+
+### Asynchronous retries
+
+All modes have `WithRetryAsync` counterparts that accept `Func<Task>`/`Func<Task<T>>`, wait with `Task.Delay`, and honor a `CancellationToken` (cancellation is never retried). To reload state asynchronously (e.g. fetch a new secret from a vault), implement `IReloadableAsync` on the caller or set `RetryRule<T>.ReloadAsync`; if a caller implements both `IReloadable` and `IReloadableAsync`, the async methods use `ReloadAsync`.
+
+A rule's `Timeout` is measured from the first failure that rule matched, so time spent on other rules does not consume its budget. To cap the total duration, pass a `CancellationToken` (e.g. `CancellationTokenSource.CancelAfter`) to async methods, or the `totalTimeout` parameter to the synchronous rules overload:
+
+```cs
+HttpResponseMessage response = await Execute.WithRetryAsync(
+    () => httpClient.SendAsync(CreateRequest(), token),
+    [secretRule, throttleRule],
+    logger,
+    token);
 ```
 
 You can find the complete example and other scenarios covered in the [demo application](https://github.com/alekdavis/dotnet-extras-retry/tree/main/RetryDemo).

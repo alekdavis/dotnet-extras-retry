@@ -9,10 +9,11 @@ internal partial class Program
     /// including recovery after reload, retrying a fixed number of times, 
     /// retrying until a timeout is reached, retrying based on a custom condition
     /// (predicate), and retrying on either an exception or a custom condition
-    /// (combined mode).
+    /// (combined mode), retrying on multiple conditions using retry rules,
+    /// and retrying asynchronous operations.
     /// The samples cover the cases when the retries solve the problem and when they do not.
     /// </summary>
-    internal static void Main()
+    internal static async Task Main()
     {
         // ---
         // RELOAD AND RETRY
@@ -175,5 +176,52 @@ internal partial class Program
         Console.WriteLine("(the last attempt throws the expected exception)");
         Console.WriteLine("-----------------------------------------");
         CombinedRetryDemo(3, 5, 100);
+
+        // ---
+        // RETRY ON MULTIPLE CONDITIONS (RULES)
+        // ---
+
+        // The following demos illustrate how to handle different failures with
+        // different retry rules: an expired client secret is fixed by a reload,
+        // while HTTP 429 (Too Many Requests) is retried after the Retry-After delay.
+        // Each rule has its own retry budget.
+
+        Console.WriteLine("-----------------------------------------");
+        Console.WriteLine("RULES RECOVERY");
+        Console.WriteLine("(reload fixes the secret, throttling stops)");
+        Console.WriteLine("-----------------------------------------");
+        RulesRetryDemo(2, 5);
+
+        Console.WriteLine("-----------------------------------------");
+        Console.WriteLine("RULES FAILURE (THROTTLING BUDGET EXHAUSTED)");
+        Console.WriteLine("(the last result is still 429)");
+        Console.WriteLine("-----------------------------------------");
+        RulesRetryDemo(5, 3);
+
+        Console.WriteLine("-----------------------------------------");
+        Console.WriteLine("RULES FAILURE (TOTAL TIMEOUT REACHED)");
+        Console.WriteLine("(the total timeout stops the retries)");
+        Console.WriteLine("-----------------------------------------");
+        RulesRetryDemo(10, 20, 250);
+
+        // ---
+        // ASYNCHRONOUS RETRY
+        // ---
+
+        // The following demos illustrate how to retry an asynchronous operation
+        // with an asynchronous reload and a cancellation token that caps
+        // the total duration of the operation.
+
+        Console.WriteLine("-----------------------------------------");
+        Console.WriteLine("ASYNC RECOVERY");
+        Console.WriteLine("(async reload fixes the secret, throttling stops)");
+        Console.WriteLine("-----------------------------------------");
+        await AsyncRetryDemo(2, 2000);
+
+        Console.WriteLine("-----------------------------------------");
+        Console.WriteLine("ASYNC CANCELLATION");
+        Console.WriteLine("(the operation is cancelled before it succeeds)");
+        Console.WriteLine("-----------------------------------------");
+        await AsyncRetryDemo(10, 300);
     }
 }

@@ -213,6 +213,38 @@ Response response = Execute.WithRetry<HttpRequestException, Response>(() =>
             </content>
         </section>
 
+        <section address="MultipleConditions">
+          <title>Multiple conditions and asynchronous retries</title>
+            <content>
+              <para>
+                Retry calls can be nested, but nested budgets multiply and the inner counter restarts on every outer retry.
+                A flatter alternative is to pass several <codeInline>RetryRule&lt;T&gt;</codeInline> objects.
+                Rules are evaluated in order; the first matching rule handles the failure using its own
+                condition, reload action, budget, and delay (<codeInline>GetSleep</codeInline> can compute the delay
+                from the result or exception, e.g. from the <codeInline>Retry-After</codeInline> header).
+                All modes also have <codeInline>WithRetryAsync</codeInline> counterparts that support
+                <codeInline>CancellationToken</codeInline>.
+              </para>
+<code language="cs">
+<![CDATA[
+Response response = Execute.WithRetry(() => client.Send(request),
+    new RetryRule<Response>
+    {
+        OnException = ex => ex is SecretExpiredException,
+        Reload      = secrets,
+        Attempts    = 2
+    },
+    new RetryRule<Response>
+    {
+        OnResult = r => r.StatusCode == HttpStatusCode.TooManyRequests,
+        Attempts = 5,
+        GetSleep = (r, ex) => r?.Headers.RetryAfter?.Delta ?? TimeSpan.FromSeconds(2)
+    });
+]]>
+</code>
+            </content>
+        </section>
+
         <section address="WhenToUse">
           <title>When to use this library</title>
             <content>
